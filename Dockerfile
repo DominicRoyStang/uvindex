@@ -10,10 +10,11 @@ COPY . .
 
 FROM setup AS dev
 # Create development build
+RUN cargo install cargo-watch
 RUN cargo build
 
 # Run development build
-CMD cargo clean && cargo run
+CMD cargo watch -x run
 
 
 FROM setup AS prod-build
