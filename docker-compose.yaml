@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  uvindex:
+    image: uvindex
+    build:
+      context: .
+      target: dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/uvindex
