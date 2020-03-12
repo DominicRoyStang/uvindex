@@ -435,7 +435,7 @@ dependencies = [
  "prettytable-rs",
  "structopt",
  "term_size",
- "unicode-width",
+ "textwrap",
 ]
 
 [[package]]

@@ -1,4 +1,5 @@
 use structopt::StructOpt;
+use term_size;
 mod info;
 
 #[derive(StructOpt, Debug)]
@@ -30,8 +31,15 @@ enum Subcommand {
 }
 
 fn on_info() {
-    info::print_info_text();
-
+    if let Some((width, _)) = term_size::dimensions_stdout() {
+        if width >= 50 {
+            info::print_info_table(width);
+        } else {
+            info::print_info_text();
+        }
+    } else {
+        info::print_info_text();
+    }
 }
 
 fn on_now() {
@@ -50,5 +58,4 @@ fn main() {
         Some(Subcommand::Now) => on_now(),
         Some(Subcommand::Forecast) => on_forecast()
     }
-    println!("{:#?}", opt);
 }

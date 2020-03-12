@@ -1,3 +1,26 @@
+use prettytable::{Table, Row, Cell, format};
+use textwrap;
+
+pub fn print_info_table(max_width: usize) {
+    let mut table = Table::new();
+    table.set_format(*format::consts::FORMAT_BOX_CHARS);
+
+    let fixed_size = 27;
+    let variable_size = max_width - fixed_size;
+
+    table.set_titles(Row::new(vec![Cell::new("UV Index"), Cell::new("Risk"), Cell::new("Recommended Protection")]));
+
+    for row in info_data() {
+        let (index_range, risk, recommended_protection) = row;
+        let index_range_cell = Cell::new(index_range.as_str());
+        let risk_cell = Cell::new(risk.as_str());
+        let recommended_protection_cell = Cell::new(textwrap::fill(recommended_protection.as_str(), variable_size).as_str());
+        table.add_row(Row::new(vec![index_range_cell, risk_cell, recommended_protection_cell]));
+    }
+
+    table.printstd();
+}
+
 pub fn print_info_text() {
     let mut text = String::from("");
 
