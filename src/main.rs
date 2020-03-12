@@ -1,4 +1,5 @@
 use structopt::StructOpt;
+mod info;
 
 #[derive(StructOpt, Debug)]
 #[structopt(name = "uvindex")]
@@ -29,7 +30,8 @@ enum Subcommand {
 }
 
 fn on_info() {
-    println!("info: TODO");
+    info::print_info_text();
+
 }
 
 fn on_now() {
