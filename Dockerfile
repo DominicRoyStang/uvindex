@@ -1,4 +1,4 @@
-FROM rust:1.41-stretch as setup
+FROM rust:1.42-stretch as setup
 
 # Create service directory
 RUN mkdir -p /uvindex
