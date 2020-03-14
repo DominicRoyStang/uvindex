@@ -3,12 +3,12 @@ use term_size;
 mod info;
 
 #[derive(StructOpt, Debug)]
-#[structopt(name = "uvindex")]
+#[structopt(name = "uvindex", about = "Fetch UV Index data from the terminal!")]
 struct Opt {
     // The number of occurrences of the `v/verbose` flag
-    /// Verbose mode (-v, -vv, -vvv, etc.)
-    #[structopt(short, long, parse(from_occurrences))]
-    verbose: u8,
+    /// Verbosity level (-v, -vv, -vvv, etc.)
+    #[structopt(short, long = "verbose", parse(from_occurrences))]
+    verbosity: u8,
 
     /// Subcommand
     #[structopt(subcommand)]
