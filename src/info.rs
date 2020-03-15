@@ -12,9 +12,9 @@ pub fn print_info_table(max_width: usize) {
 
     for row in info_data() {
         let (index_range, risk, recommended_protection) = row;
-        let index_range_cell = Cell::new(index_range.as_str());
-        let risk_cell = Cell::new(risk.as_str());
-        let recommended_protection_cell = Cell::new(textwrap::fill(recommended_protection.as_str(), variable_size).as_str());
+        let index_range_cell = Cell::new(&index_range);
+        let risk_cell = Cell::new(&risk);
+        let recommended_protection_cell = Cell::new(&textwrap::fill(&recommended_protection, variable_size));
         table.add_row(Row::new(vec![index_range_cell, risk_cell, recommended_protection_cell]));
     }
 
