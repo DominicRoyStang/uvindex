@@ -10,8 +10,7 @@ pub fn print_info_table(max_width: usize) {
 
     table.set_titles(Row::new(vec![Cell::new("UV Index"), Cell::new("Risk"), Cell::new("Recommended Protection")]));
 
-    for row in info_data() {
-        let (index_range, risk, recommended_protection) = row;
+    for (index_range, risk, recommended_protection) in info_data() {
         let index_range_cell = Cell::new(&index_range);
         let risk_cell = Cell::new(&risk);
         let recommended_protection_cell = Cell::new(&textwrap::fill(&recommended_protection, variable_size));
