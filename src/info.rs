@@ -1,6 +1,16 @@
 use prettytable::{Table, Row, Cell, format};
 use textwrap;
 
+pub fn info_message(uv_index: f32) -> String {
+    match uv_index.floor() as u32 {
+        0..=2 => low_risk_message(),
+        3..=5 => moderate_risk_message(),
+        6..=7 => high_risk_message(),
+        8..=10 => very_high_risk_message(),
+        _ => extreme_risk_message(),
+    }
+}
+
 pub fn print_info_table(max_width: usize) {
     let mut table = Table::new();
     table.set_format(*format::consts::FORMAT_BOX_CHARS);
@@ -40,6 +50,15 @@ fn info_data() -> Vec<(String, String, String)> {
         (String::from("11+"), String::from("Extreme"), extreme_risk_message())
     ]
 }
+
+pub fn risk_factor(uv_index: f32) -> String {
+    match uv_index.floor() as u32 {
+        0..=2 => String::from("low"),
+        3..=5 => String::from("moderate"),
+        6..=7 => String::from("high"),
+        8..=10 => String::from("very high"),
+        _ => String::from("extreme"),
+    }
 }
 
 fn low_risk_message() -> String {
