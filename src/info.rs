@@ -86,7 +86,7 @@ fn extreme_risk_message() -> String {
     String::from(
         "A UV index reading of 11 or more means extreme risk of harm from unprotected Sun exposure. \
         Take all precautions because unprotected skin and eyes can burn in minutes.\n\
-        Try to avoid Sun exposure between 10 a.m. and 4 p.m.\
+        Try to avoid Sun exposure between 10 a.m. and 4 p.m. \
         If outdoors, seek shade and wear Sun protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. \
         Generously apply broad spectrum SPF 30+ sunscreen every 2 hours, even on cloudy days, and after swimming or sweating. \
         Bright surfaces, such as sand, water, and snow, will increase UV exposure."

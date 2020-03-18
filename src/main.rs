@@ -7,7 +7,7 @@ mod info;
 struct Opt {
     // The number of occurrences of the `v/verbose` flag
     /// Verbosity level (-v, -vv, -vvv, etc.)
-    #[structopt(short, long = "verbose", parse(from_occurrences))]
+    #[structopt(short, long = "verbose", parse(from_occurrences), global(true))]
     verbosity: u8,
 
     /// Subcommand
