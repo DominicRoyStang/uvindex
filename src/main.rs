@@ -31,12 +31,10 @@ enum Subcommand {
 }
 
 fn on_info() {
-    if let Some((width, _)) = term_size::dimensions_stdout() {
-        if width >= 50 {
-            info::print_info_table(width);
-        } else {
-            info::print_info_text();
-        }
+    // Refactor when https://github.com/rust-lang/rust/issues/53667 is in a stable Rust release
+    let (width, _) = term_size::dimensions_stdout().unwrap_or((0,0));
+    if width >= 50 {
+        info::print_info_table(width);
     } else {
         info::print_info_text();
     }
