@@ -6,3 +6,7 @@
 
 # Git files
 /.git
+
+# Docker files
+Dockerfile
+.dockerignore

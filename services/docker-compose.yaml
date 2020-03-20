@@ -9,6 +9,8 @@ services:
     environment:
       - WEATHERBIT_API_KEY
       - OPENWEATHER_API_KEY
+    ports:
+      - 8000:8000
     stdin_open: true
     tty: true
     volumes:
