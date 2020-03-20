@@ -3,6 +3,7 @@ use term_size;
 mod info;
 mod openweather_service;
 mod weatherbit_service;
+mod geoip_service;
 
 #[derive(StructOpt, Debug)]
 #[structopt(name = "uvindex", about = "Fetch UV Index data from the terminal!")]
@@ -26,10 +27,6 @@ enum Subcommand {
     /// Outputs the current UV index
     #[structopt(name = "now")]
     Now,
-
-    /// Outputs an 8-day UV index forecast
-    #[structopt(name = "forecast")]
-    Forecast
 }
 
 fn on_info() {
@@ -43,9 +40,11 @@ fn on_info() {
 }
 
 fn on_now(verbosity: u8) {
-    let uv_index = match weatherbit_service::current_uv_index() {
+    let geoip_service::Position {latitude, longitude} = geoip_service::current_position().unwrap();
+
+    let uv_index = match weatherbit_service::current_uv_index(latitude, longitude) {
         Ok(index) => index,
-        Err(_) => openweather_service::current_uv_index().unwrap()
+        Err(_) => openweather_service::current_uv_index(latitude, longitude).unwrap()
     };
 
     match verbosity {
@@ -56,17 +55,12 @@ fn on_now(verbosity: u8) {
     }
 }
 
-fn on_forecast() {
-    println!("forecast: TODO");
-}
-
 fn main() {
     let opt = Opt::from_args();
 
     match opt.cmd {
         None => on_now(opt.verbosity),
         Some(Subcommand::Info) => on_info(),
-        Some(Subcommand::Now) => on_now(opt.verbosity),
-        Some(Subcommand::Forecast) => on_forecast()
+        Some(Subcommand::Now) => on_now(opt.verbosity)
     }
 }

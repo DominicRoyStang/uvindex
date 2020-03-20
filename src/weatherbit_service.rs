@@ -17,12 +17,12 @@ struct UvData {
     uv: f32
 }
 
-pub fn current_uv_index() -> Result<f32, Box<dyn Error>> {
+pub fn current_uv_index(latitude: f32, longitude: f32) -> Result<f32, Box<dyn Error>> {
     let api_key = env::var("WEATHERBIT_API_KEY").expect("Unable to read WEATHERBIT_API_KEY environment variable");
 
     let client = reqwest::blocking::Client::new();
     let response: CurrentApiResponse = client.get("https://api.weatherbit.io/v2.0/current")
-        .query(&[("key", api_key), ("lat", String::from("45.41117")), ("lon", String::from("-75.69812"))])
+        .query(&[("key", api_key), ("lat", latitude.to_string()), ("lon", longitude.to_string())])
         .send()?
         .json()?;
 
