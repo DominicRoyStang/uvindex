@@ -13,3 +13,15 @@ services:
     tty: true
     volumes:
       - ./backend:/backend
+
+  cli:
+    image: cli
+    build:
+      context: ./cli
+      target: dev
+    environment:
+      - BACKEND_URL=localhost:8000
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./cli:/cli
