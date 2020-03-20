@@ -1,4 +1,4 @@
-.PHONY: show-help start stop down nuke inspect-backend
+.PHONY: show-help start stop down nuke inspect-backend inspect-cli
 
 .DEFAULT_GOAL := show-help
 
@@ -26,3 +26,6 @@ nuke:
 
 inspect-backend:
 	docker-compose --file services/docker-compose.yaml exec backend /bin/bash
+
+inspect-cli:
+	docker-compose --file services/docker-compose.yaml exec cli /bin/bash
