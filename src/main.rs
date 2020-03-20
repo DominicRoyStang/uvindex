@@ -2,6 +2,7 @@ use structopt::StructOpt;
 use term_size;
 mod info;
 mod openweather_service;
+mod weatherbit_service;
 
 #[derive(StructOpt, Debug)]
 #[structopt(name = "uvindex", about = "Fetch UV Index data from the terminal!")]
@@ -42,7 +43,10 @@ fn on_info() {
 }
 
 fn on_now(verbosity: u8) {
-    let uv_index = openweather_service::current_uv_index().unwrap();
+    let uv_index = match weatherbit_service::current_uv_index() {
+        Ok(index) => index,
+        Err(_) => openweather_service::current_uv_index().unwrap()
+    };
 
     match verbosity {
         0 => println!("{}", uv_index),
@@ -65,5 +69,4 @@ fn main() {
         Some(Subcommand::Now) => on_now(opt.verbosity),
         Some(Subcommand::Forecast) => on_forecast()
     }
-    println!("{:#?}", opt);
 }
