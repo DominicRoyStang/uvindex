@@ -18,6 +18,8 @@ To run the code in containers (recommended)
 
 To run the code natively (not recommended)
 * Install Rust and Cargo
+* Run `cd services/backend` followed by `rustup override set nightly`
+* If things are still not working, run `rustup update && cargo update` from services/backend and services/cli
 
 # Run the code (containers)
 ```bash
