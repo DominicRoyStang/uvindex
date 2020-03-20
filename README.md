@@ -8,6 +8,10 @@ The most common use case is to quickly determine if you will need to wear sunscr
 
 # Environment Setup
 
+Set up the following environment variables
+* `WEATHERBIT_API_KEY`: create a [weatherbit](https://www.weatherbit.io/) account and set up an API key.
+* `OPENWEATHER_API_KEY`: create an [openweather](https://openweathermap.org/) account and set up an API key.
+
 To run the code in containers (recommended)
 * Install Docker
 * Install Docker-compose
@@ -22,5 +26,5 @@ docker-compose up --build
 
 # Run the code (natively)
 ```bash
-cargo run
+cargo run -- <args>
 ```

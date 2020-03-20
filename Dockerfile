@@ -4,6 +4,9 @@ FROM rust:1.42-stretch as setup
 RUN mkdir -p /uvindex
 WORKDIR /uvindex
 
+ENV WEATHERBIT_API_KEY=$WEATHERBIT_API_KEY
+ENV OPENWEATHER_API_KEY=$OPENWEATHER_API_KEY
+
 # Copy source code
 COPY . .
 
