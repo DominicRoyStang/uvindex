@@ -20,6 +20,9 @@ To run the code natively (not recommended)
 * Install Rust and Cargo
 * Run `cd services/backend` followed by `rustup override set nightly`
 * If things are still not working, run `rustup update && cargo update` from services/backend and services/cli
+* set `UVINDEX_BACKEND_PROTOCOL` environment variable to `http`
+* set `UVINDEX_BACKEND_HOST` environment variable to `localhost`
+* set `UVINDEX_BACKEND_PORT` environment variable to `8000`
 
 # Run the code (containers)
 ```bash
