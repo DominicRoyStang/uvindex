@@ -2,10 +2,20 @@
 
 #[macro_use] extern crate rocket;
 use rocket::response::{content, NamedFile};
+mod openweather_service;
+mod weatherbit_service;
 
-#[get("/uv")]
-fn uv() -> &'static str {
-    "TODO"
+/// Get current UV index at the provided latitude and longitude.
+#[get("/current?<latitude>&<longitude>")]
+fn current(latitude: f32, longitude: f32) -> content::Json<String>  {
+    let uv_index = match weatherbit_service::current_uv_index(latitude, longitude) {
+        Ok(index) => index,
+        Err(_) => openweather_service::current_uv_index(latitude, longitude).unwrap()
+    };
+
+    let body = format!("{{\"uv_index\": {}}}", uv_index);
+
+    content::Json(body)
 }
 
 /// Ping.
@@ -45,7 +55,7 @@ fn index() -> content::Html<&'static str> {
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
         .mount("/", routes![index, favicon, logo_with_text])
-        .mount("/api/v1", routes![uv, ping])
+        .mount("/api/v1", routes![current, ping])
 }
 
 fn main() {
