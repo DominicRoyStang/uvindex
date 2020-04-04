@@ -3,3 +3,9 @@
 
 # Kubernetes
 kubernetes/secret.yaml
+
+# Terraform
+.terraform
+terraform/uvindex-account.json
+*.tfstate
+*.tfstate.*
