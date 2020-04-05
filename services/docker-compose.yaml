@@ -5,7 +5,6 @@ services:
     image: backend
     build:
       context: ./backend
-      target: dev
     environment:
       - WEATHERBIT_API_KEY
       - OPENWEATHER_API_KEY
@@ -27,5 +26,7 @@ services:
       - UVINDEX_BACKEND_PORT=8000
     stdin_open: true
     tty: true
+    depends_on:
+      - backend
     volumes:
       - ./cli:/cli

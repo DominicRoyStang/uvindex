@@ -21,7 +21,7 @@ fn current(latitude: f32, longitude: f32) -> content::Json<String>  {
 /// Ping.
 #[get("/ping")]
 fn ping() -> &'static str {
-    "Pong!"
+    "Pong!\n"
 }
 
 /// Main favicon.
