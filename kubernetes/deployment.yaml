@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: uvindex-backend
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: uvindex-backend
+    template:
+        metadata:
+            labels:
+                app: uvindex-backend
+        spec:
+            containers:
+              - name: uvindex-backend
+                image: uvindex-backend
+                imagePullPolicy: Never
+                ports:
+                  - containerPort: 8000
+                env:
+                  - name: WEATHERBIT_API_KEY
+                    valueFrom:
+                        secretKeyRef:
+                            name: uvindex-secret
+                            key: weatherbit-api-key
+                  - name: OPENWEATHER_API_KEY
+                    valueFrom:
+                        secretKeyRef:
+                            name: uvindex-secret
+                            key: openweather-api-key
