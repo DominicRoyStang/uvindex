@@ -24,17 +24,17 @@ To run the code natively (not recommended)
 * set `UVINDEX_BACKEND_HOST` environment variable to `localhost`
 * set `UVINDEX_BACKEND_PORT` environment variable to `8000`
 
-# Run the code (containers)
+## Run the code (containers)
 ```bash
 docker-compose up --build
 ```
 
-# Run the code (natively)
+## Run the code (natively)
 ```bash
 cargo run -- <args>
 ```
 
-# Kubernetes Local Setup
+## Kubernetes Local Setup
 - Install kubectl
 - Install minikube
 - Follow the instructions in the comment at the top of the `kubernetes/secret_template.yaml` file
@@ -45,3 +45,13 @@ cargo run -- <args>
     kubectl apply -f kubernetes/.
     minikube service uvindex-load-balancer --url # Go to this url on a browser
 ```
+
+## Set up on Google Cloud Platform
+This project currently runs on Google Cloud Platform (GCP), and is hence set up to quickly get deployed on GCP using terraform.
+Here are the (high-level) steps.
+
+1. Create a GCP project.
+2. Set up a service account as per the instructions [here](https://learn.hashicorp.com/terraform/gcp/build).
+3. Due to limitations with terraform and GCP, there is one manual step to perform on GCP:
+  **connect an external repo on google cloud source** (connect it to this repo or a fork of this repo).
+4. Use terraform and specify all the variables listed in the `terraform/variables.tf` file to generate everything.

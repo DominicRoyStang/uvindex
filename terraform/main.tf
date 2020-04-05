@@ -1,5 +1,5 @@
 provider "google" {
-  version = "3.5.0"
+  version = "3.15.0"
 
   credentials = file("${var.project_name}-account.json")
 
@@ -8,15 +8,17 @@ provider "google" {
   zone = var.gcp_zone
 }
 
-resource "google_app_engine_application" "app" {
-  project = var.gcp_project_id
-  location_id = var.gcp_location
+module "registry" {
+    source = "./modules/registry"
+
+    gcp_project = var.gcp_project_id
 }
 
-resource "google_app_engine_domain_mapping" "domain_mapping" {
-  domain_name = var.domain_name
+module "cicd" {
+    source = "./modules/cicd"
 
-  ssl_settings {
-    ssl_management_type = "AUTOMATIC"
-  }
+    gcp_project = var.gcp_project_id
+    repo_name = var.project_name
+    repo_host = var.remote_repo_host
+    repo_owner = var.remote_repo_owner
 }
