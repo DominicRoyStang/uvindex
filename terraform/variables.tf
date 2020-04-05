@@ -1,9 +1,9 @@
-variable "gcp_project_id" {
-    default = "uvindex-dominicroystang"
-}
-
 variable "project_name" {
     default = "uvindex"
+}
+
+variable "gcp_project_id" {
+    default = "uvindex-dominicroystang"
 }
 
 variable "gcp_region" {
@@ -20,4 +20,12 @@ variable "gcp_location" {
 
 variable "domain_name" {
     default = "uvindex.xyz"
+}
+
+variable "remote_repo_host" {
+    default = "github"
+}
+
+variable "remote_repo_owner" {
+    default= "dominicroystang"
 }
