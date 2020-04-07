@@ -52,6 +52,6 @@ Here are the (high-level) steps.
 
 1. Create a GCP project.
 2. Set up a service account as per the instructions [here](https://learn.hashicorp.com/terraform/gcp/build).
-3. Due to limitations with terraform and GCP, there is one manual step to perform on GCP:
-  **connect an external repo on google cloud source** (connect it to this repo or a fork of this repo).
+3. Due to limitations with terraform and GCP, there is one manual step to perform on Github prior to running terraform:
+    Enable the cloud build app from github (but don't add the build trigger manually on GCP)
 4. Use terraform and specify all the variables listed in the `terraform/variables.tf` file to generate everything.
