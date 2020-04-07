@@ -6,9 +6,11 @@ steps:
     - id: "Build cli"
       name: "gcr.io/cloud-builders/docker"
       args: ["build", "-t", "gcr.io/$PROJECT_ID/uvindex_cli", "./services/cli"]
+      waitFor: ['-']
 
     - id: "Push built backend image to registry"
       name: "gcr.io/cloud-builders/docker"
       args: ["push", "gcr.io/$PROJECT_ID/uvindex_backend"]
+      waitFor: ["Build backend"]
 
 timeout: 1800s

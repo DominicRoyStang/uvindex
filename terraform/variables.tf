@@ -22,10 +22,10 @@ variable "domain_name" {
     default = "uvindex.xyz"
 }
 
-variable "remote_repo_host" {
-    default = "github"
+variable "remote_repo_owner" {
+    default= "DominicRoyStang"
 }
 
-variable "remote_repo_owner" {
-    default= "dominicroystang"
+variable "remote_repo_name" {
+    default = "uvindex"
 }
