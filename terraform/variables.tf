@@ -1,26 +1,36 @@
+# GENERAL
+
 variable "project_name" {
     default = "uvindex"
-}
-
-variable "gcp_project_id" {
-    default = "uvindex-dominicroystang"
-}
-
-variable "gcp_region" {
-    default = "us-central1"
-}
-
-variable "gcp_zone" {
-    default = "us-central-1-c"
-}
-
-variable "gcp_location" {
-    default = "us-central"
 }
 
 variable "domain_name" {
     default = "uvindex.xyz"
 }
+
+# GCP PROJECT
+
+variable "gcp_project_id" {
+    description = "unique identifier given to the gcp project - not to be confused with project number"
+    default = "uvindex-dominicroystang"
+}
+
+variable "gcp_location" {
+    description = "TO REMOVE - this concept isn't used in this setup"
+    default = "us-central"
+}
+
+variable "gcp_region" {
+    description = "Some resources are hosted in specific locations denoted by their region (collection of zones)."
+    default = "us-central1"
+}
+
+variable "gcp_zone" {
+    description = "A zone is an isolated location within a region. Each region has 3 or more zones labeled a,b,c..."
+    default = "us-central-1-c"
+}
+
+# REPO
 
 variable "remote_repo_owner" {
     default= "DominicRoyStang"
