@@ -28,6 +28,10 @@ module "cicd" {
     source = "./modules/cicd"
 
     gcp_project = var.gcp_project_id
+    zone = var.gcp_zone
     repo_name = var.remote_repo_name
     repo_owner = var.remote_repo_owner
+
+    cluster_name = module.cluster.name
+}
 }

@@ -6,6 +6,10 @@ resource "google_cloudbuild_trigger" "filename-trigger" {
     description = "Push to any branch"
     filename = "cloudbuild.yaml"
     project = var.gcp_project
+    substitutions = {
+        _CLOUDSDK_COMPUTE_ZONE = var.zone
+        _CLOUDSDK_CONTAINER_CLUSTER = var.cluster_name
+    }
 
     github {
         owner = var.repo_owner
