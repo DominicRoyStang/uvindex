@@ -1,11 +1,15 @@
 steps:
     - id: "Build backend"
       name: "gcr.io/cloud-builders/docker"
-      args: ["build", "-t", "gcr.io/$PROJECT_ID/uvindex-backend:$SHORT_SHA", "./services/backend"]
+      args: ["build", "--progress=plain", "-t", "gcr.io/$PROJECT_ID/uvindex-backend:$SHORT_SHA", "./services/backend"]
+      env:
+        - 'DOCKER_BUILDKIT=1'
 
     - id: "Build cli"
       name: "gcr.io/cloud-builders/docker"
-      args: ["build", "-t", "gcr.io/$PROJECT_ID/uvindex-cli:$SHORT_SHA", "./services/cli"]
+      args: ["build", "--progress=plain", "-t", "gcr.io/$PROJECT_ID/uvindex-cli:$SHORT_SHA", "./services/cli"]
+      env:
+        - 'DOCKER_BUILDKIT=1'
       waitFor: ["-"]
 
     - id: "Push built backend image to registry"
