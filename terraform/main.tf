@@ -42,4 +42,6 @@ module "functions" {
     project_id = var.gcp_project_id
     region = var.gcp_region
     domain = var.domain_name
+    weatherbit_api_key = var.weatherbit_api_key
+    openweather_api_key = var.openweather_api_key
 }

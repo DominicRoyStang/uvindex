@@ -39,3 +39,13 @@ variable "remote_repo_owner" {
 variable "remote_repo_name" {
     default = "uvindex"
 }
+
+# BACKEND SERVICE
+
+variable "weatherbit_api_key" {
+    type = string
+}
+
+variable "openweather_api_key" {
+    type = string
+}
