@@ -9,3 +9,4 @@ kubernetes/secret.yaml
 terraform/uvindex-account.json
 *.tfstate
 *.tfstate.*
+secret.tfvars

@@ -12,11 +12,11 @@ resource "google_cloud_run_service" "default" {
                 image = "gcr.io/${var.project_id}/${var.project_name}-backend:latest"
                 env {
                     name = "WEATHERBIT_API_KEY"
-                    # value needs to be set manually since it is a secret
+                    value = var.weatherbit_api_key
                 }
                 env {
                     name = "OPENWEATHER_API_KEY"
-                    # value needs to be set manually since it is a secret
+                    value = var.openweather_api_key
                 }
             }
         }

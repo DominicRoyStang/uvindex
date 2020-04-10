@@ -13,3 +13,11 @@ variable "region" {
 variable "domain" {
     type = string
 }
+
+variable "weatherbit_api_key" {
+    type = string
+}
+
+variable "openweather_api_key" {
+    type = string
+}
