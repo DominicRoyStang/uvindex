@@ -1,5 +1,5 @@
 ### DEV BUILD STEPS ###
-FROM rust:1.42-stretch as setup
+FROM rust:1.42-stretch AS setup
 
 # Create service directory
 RUN mkdir -p /backend
@@ -20,7 +20,7 @@ ENV ROCKET_PORT=8080
 # Copy source code
 COPY . .
 
-FROM setup as dev
+FROM setup AS dev
 # Create development build
 RUN cargo install cargo-watch
 RUN cargo build
@@ -30,13 +30,13 @@ CMD cargo watch -x run
 
 
 ### PROD BUILD STEPS ###
-FROM setup as prod-build
+FROM setup AS prod-build
 
 # Create production build
 RUN cargo build --release
 
 # Use a minimalist image
-FROM debian:stretch-slim as prod
+FROM debian:stretch-slim AS prod
 
 # Expose ports in the container
 EXPOSE 8080

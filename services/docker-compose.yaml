@@ -5,7 +5,7 @@ services:
     image: backend
     build:
         context: ./backend
-        target: prod
+        target: dev
     environment:
         - WEATHERBIT_API_KEY
         - OPENWEATHER_API_KEY
@@ -21,6 +21,7 @@ services:
     image: cli
     build:
         context: ./cli
+        target: dev
     environment:
         - UVINDEX_BACKEND_PROTOCOL=http
         - UVINDEX_BACKEND_HOST=backend
@@ -31,6 +32,8 @@ services:
         - backend
     volumes:
         - ./cli:/cli
+        - cli-target:/cli/target
 
 volumes:
     backend-target:
+    cli-target:
