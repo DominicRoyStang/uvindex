@@ -17,7 +17,7 @@ spec:
                 image: uvindex-backend
                 imagePullPolicy: Never
                 ports:
-                  - containerPort: 8000
+                  - containerPort: 8080
                 env:
                   - name: WEATHERBIT_API_KEY
                     valueFrom:
