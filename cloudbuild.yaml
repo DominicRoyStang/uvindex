@@ -1,4 +1,6 @@
 steps:
+    # BlockedTODO: https://github.com/moby/buildkit/issues/606
+    # Set DOCKER_BUILDKIT=1 env and pass --target=plain once this issue is resolved
     - id: "Build backend"
       name: "gcr.io/cloud-builders/docker"
       args: ["build", "-t", "gcr.io/$PROJECT_ID/uvindex-backend:$SHORT_SHA", "./services/backend"]

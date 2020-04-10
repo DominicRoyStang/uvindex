@@ -46,7 +46,7 @@ ENV WEATHERBIT_API_KEY=$WEATHERBIT_API_KEY
 ENV OPENWEATHER_API_KEY=$OPENWEATHER_API_KEY
 ENV ROCKET_ADDRESS=0.0.0.0
 # BlockedTODO: https://github.com/terraform-providers/terraform-provider-google/issues/5539
-# Update this and related terraform configs when the issue is resolved
+# Update port and related terraform configs when the issue is resolved
 ENV ROCKET_PORT=8080
 
 # Install environment dependencies
