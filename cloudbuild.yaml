@@ -1,15 +1,11 @@
 steps:
     - id: "Build backend"
       name: "gcr.io/cloud-builders/docker"
-      args: ["build", "--progress=plain", "-t", "gcr.io/$PROJECT_ID/uvindex-backend:$SHORT_SHA", "./services/backend"]
-      env:
-        - 'DOCKER_BUILDKIT=1'
+      args: ["build", "-t", "gcr.io/$PROJECT_ID/uvindex-backend:$SHORT_SHA", "./services/backend"]
 
     - id: "Build cli"
       name: "gcr.io/cloud-builders/docker"
-      args: ["build", "--progress=plain", "-t", "gcr.io/$PROJECT_ID/uvindex-cli:$SHORT_SHA", "./services/cli"]
-      env:
-        - 'DOCKER_BUILDKIT=1'
+      args: ["build", "-t", "gcr.io/$PROJECT_ID/uvindex-cli:$SHORT_SHA", "./services/cli"]
       waitFor: ["-"]
 
     - id: "Push built backend image to registry"
@@ -28,4 +24,4 @@ steps:
 substitutions:
     _CLOUD_RUN_SERVICE_NAME: "" # default value
     _CLOUD_RUN_REGION: "" # default value
-timeout: 1800s
+timeout: 2700s
