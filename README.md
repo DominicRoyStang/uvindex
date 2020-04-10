@@ -15,6 +15,7 @@ Set up the following environment variables
 To run the code in containers (recommended)
 * Install Docker
 * Install Docker-compose
+* Run `make build` from the root of this repository (you only need to rebuild when a dockerfile is changed)
 
 To run the code natively (not recommended)
 * Install Rust and Cargo
@@ -26,7 +27,7 @@ To run the code natively (not recommended)
 
 ## Run the code (containers)
 ```bash
-docker-compose up --build
+make start
 ```
 
 ## Run the code (natively)

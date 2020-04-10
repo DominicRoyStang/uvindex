@@ -4,28 +4,33 @@ services:
   backend:
     image: backend
     build:
-      context: ./backend
+        context: ./backend
+        target: prod
     environment:
-      - WEATHERBIT_API_KEY
-      - OPENWEATHER_API_KEY
+        - WEATHERBIT_API_KEY
+        - OPENWEATHER_API_KEY
     ports:
-      - 8080:8080
+        - 8080:8080
     stdin_open: true
     tty: true
     volumes:
-      - ./backend:/backend
+        - ./backend:/backend
+        - backend-target:/backend/target
 
   cli:
     image: cli
     build:
-      context: ./cli
+        context: ./cli
     environment:
-      - UVINDEX_BACKEND_PROTOCOL=http
-      - UVINDEX_BACKEND_HOST=backend
-      - UVINDEX_BACKEND_PORT=8080
+        - UVINDEX_BACKEND_PROTOCOL=http
+        - UVINDEX_BACKEND_HOST=backend
+        - UVINDEX_BACKEND_PORT=8080
     stdin_open: true
     tty: true
     depends_on:
-      - backend
+        - backend
     volumes:
-      - ./cli:/cli
+        - ./cli:/cli
+
+volumes:
+    backend-target:
