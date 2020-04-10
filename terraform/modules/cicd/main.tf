@@ -14,4 +14,9 @@ resource "google_cloudbuild_trigger" "filename-trigger" {
             branch = ".*"
         }
     }
+
+    substitutions = {
+        _REGION = var.region
+        _SERVICE_NAME = var.service_name
+    }
 }

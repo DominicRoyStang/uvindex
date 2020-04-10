@@ -9,13 +9,13 @@ provider "google" {
 }
 
 provider "google-beta" {
-  version = "3.15.0"
+    version = "3.15.0"
 
-  credentials = file("${var.project_name}-account.json")
+    credentials = file("${var.project_name}-account.json")
 
-  project = var.gcp_project_id
-  region  = var.gcp_region
-  zone = var.gcp_zone
+    project = var.gcp_project_id
+    region  = var.gcp_region
+    zone = var.gcp_zone
 }
 
 module "registry" {
@@ -30,4 +30,16 @@ module "cicd" {
     gcp_project = var.gcp_project_id
     repo_name = var.remote_repo_name
     repo_owner = var.remote_repo_owner
+    region = var.gcp_region
+
+    service_name = module.functions.service_name
+}
+
+module "functions" {
+    source = "./modules/functions"
+
+    project_name = var.project_name
+    project_id = var.gcp_project_id
+    region = var.gcp_region
+    domain = var.domain_name
 }
