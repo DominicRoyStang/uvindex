@@ -9,7 +9,7 @@ services:
       - WEATHERBIT_API_KEY
       - OPENWEATHER_API_KEY
     ports:
-      - 8000:8000
+      - 8080:8080
     stdin_open: true
     tty: true
     volumes:
@@ -19,11 +19,10 @@ services:
     image: cli
     build:
       context: ./cli
-      target: dev
     environment:
       - UVINDEX_BACKEND_PROTOCOL=http
       - UVINDEX_BACKEND_HOST=backend
-      - UVINDEX_BACKEND_PORT=8000
+      - UVINDEX_BACKEND_PORT=8080
     stdin_open: true
     tty: true
     depends_on:
