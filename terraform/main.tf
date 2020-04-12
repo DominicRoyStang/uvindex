@@ -38,7 +38,7 @@ module "cicd" {
 module "functions" {
     source = "./modules/functions"
 
-    project_name = var.project_name
+    backend_service_name = var.backend_service_name
     project_id = var.gcp_project_id
     region = var.gcp_region
     domain = var.domain_name
