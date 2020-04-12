@@ -31,8 +31,10 @@ module "cicd" {
     repo_name = var.remote_repo_name
     repo_owner = var.remote_repo_owner
     region = var.gcp_region
+    backend_service_name = var.backend_service_name
+    cli_service_name = var.cli_service_name
 
-    service_name = module.functions.service_name
+    cloud_run_service_name = module.functions.service_name
 }
 
 module "functions" {

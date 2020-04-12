@@ -46,6 +46,10 @@ variable "backend_service_name" {
     default = "uvindex-backend"
 }
 
+variable "cli_service_name" {
+    default = "uvindex-cli"
+}
+
 variable "weatherbit_api_key" {
     type = string
 }
