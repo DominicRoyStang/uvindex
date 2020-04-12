@@ -19,6 +19,17 @@ I built `uvindex` mostly as a side-project to sharpen my skills with the followi
 
 Despite being mainly a learning project, I do use `uvindex` frequently to convince my friends and family to apply sunscreen. People are often surprised by uv index and its related recommended precautions on a day that doesn't _feel_ like a high-uv day.
 
+# Installation
+
+To install the CLI on x86 ubuntu/debian, you can just download the latest [release](https://github.com/DominicRoyStang/uvindex/releases) binary, and move it to your `~/.local/bin` folder.
+
+On other platforms, you'll have to compile the binary yourself:
+* Install Rust and Cargo
+* Run `cd services/cli`
+* Run `cargo build --release`
+* Rename the file in `services/cli/target/release/uvindex-cli` to `uvindex`
+* Move this `uvindex` file to the `~/.local/bin` folder
+
 ---
 
 # Contributing
@@ -52,7 +63,7 @@ To run the code natively
 make start
 ```
 
-**Natively:**
+**Natively:** (from `services/backend` and `services/cli`)
 ```bash
 cargo run -- <args>
 ```
