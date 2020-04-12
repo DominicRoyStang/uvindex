@@ -12,6 +12,10 @@ struct Opt {
     #[structopt(short, long = "verbose", parse(from_occurrences), global(true))]
     verbosity: u8,
 
+    // Outputs the uvindex cli version
+    #[structopt(long)]
+    version: bool,
+
     /// Subcommand
     #[structopt(subcommand)]
     cmd: Option<Subcommand>
@@ -26,6 +30,11 @@ enum Subcommand {
     /// Outputs the current UV index
     #[structopt(name = "now")]
     Now,
+}
+
+fn on_version() {
+    let version = env!("CARGO_PKG_VERSION");
+    println!("{}", version)
 }
 
 fn on_info() {
@@ -53,6 +62,10 @@ fn on_now(verbosity: u8) {
 
 fn main() {
     let opt = Opt::from_args();
+
+    if opt.version {
+        return on_version()
+    }
 
     match opt.cmd {
         None => on_now(opt.verbosity),
