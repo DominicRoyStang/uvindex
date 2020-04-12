@@ -15,7 +15,7 @@ A common use case is to quickly determine if you will need to wear sunscreen on 
 
 ## Background
 
-I built `uvindex` mostly as a side-project to sharpen my skills with the following technologies: **Rust**, **Docker multi-stage builds**, **Terraform**, and **Kubernetes**.
+I built `uvindex` mostly as a side-project to sharpen my skills with the following technologies: **Rust**, **Docker multi-stage builds**, **Terraform**, and **Kubernetes**. I also learned how to create nice scalable svg logos using Figma to create the logo you see at the top of this README, in the `docs` folder, and on [uvindex.xyz](https://uvindex.xyz).
 
 Despite being mainly a learning project, I do use `uvindex` frequently to convince my friends and family to apply sunscreen. People are often surprised by uv index and its related recommended precautions on a day that doesn't _feel_ like a high-uv day.
 
