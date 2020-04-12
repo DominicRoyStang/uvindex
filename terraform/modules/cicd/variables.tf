@@ -14,6 +14,14 @@ variable "region" {
     type = string
 }
 
-variable "service_name" {
+variable "cloud_run_service_name" {
+    type = string
+}
+
+variable "backend_service_name" {
+    type = string
+}
+
+variable "cli_service_name" {
     type = string
 }

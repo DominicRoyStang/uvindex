@@ -17,6 +17,8 @@ resource "google_cloudbuild_trigger" "filename-trigger" {
 
     substitutions = {
         _CLOUD_RUN_REGION = var.region
-        _CLOUD_RUN_SERVICE_NAME = var.service_name
+        _CLOUD_RUN_SERVICE_NAME = var.cloud_run_service_name
+        _BACKEND_SERVICE_NAME = var.backend_service_name
+        _CLI_SERVICE_NAME = var.cli_service_name
     }
 }

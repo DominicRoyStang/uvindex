@@ -3,27 +3,37 @@ steps:
     # Set DOCKER_BUILDKIT=1 env and pass --target=plain once this issue is resolved
     - id: "Build backend"
       name: "gcr.io/cloud-builders/docker"
-      args: ["build", "-t", "gcr.io/$PROJECT_ID/uvindex-backend:$SHORT_SHA", "./services/backend"]
+      args: ["build", "-t", "gcr.io/$PROJECT_ID/$_BACKEND_SERVICE_NAME:$SHORT_SHA", "./services/backend"]
 
     - id: "Build cli"
       name: "gcr.io/cloud-builders/docker"
-      args: ["build", "-t", "gcr.io/$PROJECT_ID/uvindex-cli:$SHORT_SHA", "./services/cli"]
+      args: ["build", "-t", "gcr.io/$PROJECT_ID/$_CLI_SERVICE_NAME:$SHORT_SHA", "./services/cli"]
       waitFor: ["-"]
 
     - id: "Push built backend image to registry"
       name: "gcr.io/cloud-builders/docker"
-      args: ["push", "gcr.io/$PROJECT_ID/uvindex-backend"]
+      args: ["push", "gcr.io/$PROJECT_ID/$_BACKEND_SERVICE_NAME"]
       waitFor: ["Build backend"]
 
     - id: "Promote backend image to latest"
       name: "gcr.io/cloud-builders/gcloud"
-      args: ["container", "images", "add-tag", "gcr.io/$PROJECT_ID/uvindex-backend:$SHORT_SHA", "gcr.io/$PROJECT_ID/uvindex-backend:latest"]
+      entrypoint: "bash"
+      args:
+        - '-c'
+        - |
+          [[ "$BRANCH_NAME" == "master" ]] && gcloud container images add-tag gcr.io/$PROJECT_ID/$_BACKEND_SERVICE_NAME:$SHORT_SHA gcr.io/$PROJECT_ID/$_BACKEND_SERVICE_NAME:latest || echo "skipping..."
 
     - id: "Deploy backend image to cloud run"
       name: "gcr.io/cloud-builders/gcloud"
-      args: ["run", "deploy", "$_CLOUD_RUN_SERVICE_NAME", "--image", "gcr.io/$PROJECT_ID/uvindex-backend:$SHORT_SHA", "--region", "$_CLOUD_RUN_REGION", "--platform", "managed", "--allow-unauthenticated"]
+      entrypoint: "bash"
+      args:
+        - '-c'
+        - |
+          [[ "$BRANCH_NAME" == "master" ]] && gcloud run deploy $_CLOUD_RUN_SERVICE_NAME --image gcr.io/$PROJECT_ID/$_BACKEND_SERVICE_NAME:$SHORT_SHA --region $_CLOUD_RUN_REGION --platform managed --allow-unauthenticated || echo "skipping..."
 
 substitutions:
     _CLOUD_RUN_SERVICE_NAME: "" # default value
     _CLOUD_RUN_REGION: "" # default value
+    _BACKEND_SERVICE_NAME: "" # default value
+    _CLI_SERVICE_NAME: "" # default value
 timeout: 2700s
