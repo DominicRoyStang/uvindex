@@ -1,7 +1,9 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
 #[macro_use] extern crate rocket;
-use rocket::response::{content, NamedFile};
+#[macro_use] extern crate rocket_include_static_resources;
+use rocket::response::content;
+use rocket_include_static_resources::StaticResponse;
 mod openweather_service;
 mod weatherbit_service;
 
@@ -26,35 +28,44 @@ fn ping() -> &'static str {
 
 /// Main favicon.
 #[get("/favicon.ico")]
-pub fn favicon() -> Option<NamedFile> {
-    NamedFile::open("static/favicon.ico").ok()
+pub fn favicon() -> StaticResponse {
+    static_response!("favicon")
+}
+
+/// Logo.
+#[get("/uvindex-logo.svg")]
+pub fn logo() -> StaticResponse {
+    static_response!("uvindex-logo")
 }
 
 /// Homepage logo.
 #[get("/uvindex-logo-with-text.svg")]
-pub fn logo_with_text() -> Option<NamedFile> {
-    NamedFile::open("static/uvindex-logo-with-text.svg").ok()
+pub fn logo_with_text() -> StaticResponse {
+    static_response!("uvindex-logo-with-text")
 }
 
 /// Basic homepage.
 #[get("/")]
-fn index() -> content::Html<&'static str> {
-    content::Html(
-        r"
-        <title>UV Index</title>
-        <img src='uvindex-logo-with-text.svg' />
-        <br /><br />
-        <div>Backend server for uvindex.<div>
-        <div>More information at <a href='https://github.com/DominicRoyStang/uvindex/'>https://github.com/DominicRoyStang/uvindex/</a></div>
-        <br />
-        <div>Looking for the api? try <a href='https://uvindex.xyz/api/v1/ping'>https://uvindex.xyz/api/v1/ping</a></div>"
-    )
+fn index() -> StaticResponse {
+    static_response!("index")
 }
 
 /// Set up server and routes
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
-        .mount("/", routes![index, favicon, logo_with_text])
+        .attach( // Initialize static resources to be included in release binary
+            StaticResponse::fairing(|resources| {
+                static_resources_initialize!(
+                    resources,
+                    "favicon", "static/favicon.ico",
+                    "uvindex-logo", "static/uvindex-logo.svg",
+                    "uvindex-logo-with-text", "static/uvindex-logo-with-text.svg",
+                    "index", "static/index.html",
+                );
+            })
+        )
+        .mount("/", routes![index, favicon])
+        .mount("/static", routes![favicon, logo, logo_with_text])
         .mount("/api/v1", routes![current, ping])
 }
 
