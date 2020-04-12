@@ -107,6 +107,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b3a71ab494c0b5b860bdc8407ae08978052417070c2ced38573a9157ad75b8ac"
 
 [[package]]
+name = "crc-any"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8acf7462b4e0f5fd1121823cdae740be59ae6bbedd17b4335daabca275e9930c"
+dependencies = [
+ "debug-helper",
+]
+
+[[package]]
+name = "debug-helper"
+version = "0.3.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9c145f713353a46b2e649e0b1eff34c488602466c8c2359f5d94faa00079cd02"
+
+[[package]]
 name = "devise"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -762,6 +777,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "rc-u8-reader"
+version = "2.0.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eafab9eced6ad9afde7b4a1fdaec66861f9acc189e826cfa91134a5030ecfac0"
+dependencies = [
+ "debug-helper",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.1.56"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -843,6 +867,29 @@ dependencies = [
  "toml",
  "version_check 0.9.1",
  "yansi 0.5.0",
+]
+
+[[package]]
+name = "rocket-etag-if-none-match"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "86a7adafc19fdf23af8281790f3cb566e532158eebb76ec2a7d26210798502c3"
+dependencies = [
+ "rocket",
+]
+
+[[package]]
+name = "rocket-include-static-resources"
+version = "0.9.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "363773b0df994650f8632023b5ace0d1c4bc96d111f5900dba73cff01c08e19d"
+dependencies = [
+ "crc-any",
+ "mime 0.3.16",
+ "mime_guess",
+ "rc-u8-reader",
+ "rocket",
+ "rocket-etag-if-none-match",
 ]
 
 [[package]]
@@ -1185,6 +1232,7 @@ version = "0.1.0"
 dependencies = [
  "reqwest",
  "rocket",
+ "rocket-include-static-resources",
  "serde",
 ]
 
