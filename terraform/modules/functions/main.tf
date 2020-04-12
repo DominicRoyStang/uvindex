@@ -1,5 +1,5 @@
 resource "google_cloud_run_service" "default" {
-    name = "cloudrun-${var.project_name}-backend"
+    name = "cloudrun-${var.backend_service_name}"
     location = var.region
 
     metadata {
@@ -9,7 +9,7 @@ resource "google_cloud_run_service" "default" {
     template {
         spec {
             containers {
-                image = "gcr.io/${var.project_id}/${var.project_name}-backend:latest"
+                image = "gcr.io/${var.project_id}/${var.backend_service_name}:latest"
                 env {
                     name = "WEATHERBIT_API_KEY"
                     value = var.weatherbit_api_key

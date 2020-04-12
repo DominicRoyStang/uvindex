@@ -33,7 +33,7 @@ variable "gcp_zone" {
 # REPO
 
 variable "remote_repo_owner" {
-    default= "DominicRoyStang"
+    default = "DominicRoyStang"
 }
 
 variable "remote_repo_name" {
@@ -41,6 +41,10 @@ variable "remote_repo_name" {
 }
 
 # BACKEND SERVICE
+
+variable "backend_service_name" {
+    default = "uvindex-backend"
+}
 
 variable "weatherbit_api_key" {
     type = string

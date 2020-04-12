@@ -1,4 +1,4 @@
-variable "project_name" {
+variable "backend_service_name" {
     type = string
 }
 
