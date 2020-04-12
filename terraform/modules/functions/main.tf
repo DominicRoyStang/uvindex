@@ -1,6 +1,7 @@
 resource "google_cloud_run_service" "default" {
     name = "cloudrun-${var.backend_service_name}"
     location = var.region
+    autogenerate_revision_name = true
 
     metadata {
         namespace = var.project_id
