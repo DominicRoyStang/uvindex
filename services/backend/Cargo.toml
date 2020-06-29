@@ -8,6 +8,6 @@ edition = "2018"
 
 [dependencies]
 rocket = { version = "0.4.5" }
-rocket-include-static-resources = { version = "0.9.3" }
+rocket-include-static-resources = { version = "0.9.4" }
 reqwest = { version = "0.10.6", features = ["blocking", "json"] }
 serde = { version = "1.0.114", features = ["derive"] }
