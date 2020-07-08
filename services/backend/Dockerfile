@@ -1,5 +1,5 @@
 ### DEV BUILD STEPS ###
-FROM rust:1.42-stretch AS setup
+FROM rust:1.44-stretch AS setup
 
 # Create service directory
 RUN mkdir -p /backend
@@ -8,7 +8,8 @@ WORKDIR /backend
 # Expose ports in the container
 EXPOSE 8080
 
-# Set rust to use nightly builds (for Rocket)
+# BlockedTODO: https://github.com/SergioBenitez/Rocket/issues/19
+# We use nightly builds for Rocket. Switch to stable builds once this issue is resolved.
 RUN rustup default nightly
 
 # Source run-time environment variables

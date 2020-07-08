@@ -1,5 +1,5 @@
 ### DEV BUILD STEPS ###
-FROM rust:1.42-stretch AS setup
+FROM rust:1.44-stretch AS setup
 
 # Create service directory
 RUN mkdir -p /cli
