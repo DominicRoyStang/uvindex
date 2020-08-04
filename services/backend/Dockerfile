@@ -1,12 +1,12 @@
 ### DEV BUILD STEPS ###
-FROM rust:1.44-stretch AS setup
+FROM rust:1.45-stretch AS setup
 
 # Create service directory
 RUN mkdir -p /backend
 WORKDIR /backend
 
 # Expose ports in the container
-EXPOSE 8080
+EXPOSE 3000
 
 # BlockedTODO: https://github.com/SergioBenitez/Rocket/issues/19
 # We use nightly builds for Rocket. Switch to stable builds once this issue is resolved.
@@ -16,7 +16,7 @@ RUN rustup default nightly
 ENV WEATHERBIT_API_KEY=$WEATHERBIT_API_KEY
 ENV OPENWEATHER_API_KEY=$OPENWEATHER_API_KEY
 ENV ROCKET_ADDRESS=0.0.0.0
-ENV ROCKET_PORT=8080
+ENV ROCKET_PORT=3000
 
 # Copy source code
 COPY . .
@@ -40,15 +40,13 @@ RUN cargo build --release
 FROM debian:stretch-slim AS prod
 
 # Expose ports in the container
-EXPOSE 8080
+EXPOSE 3000
 
 # Source run-time environment variables
 ENV WEATHERBIT_API_KEY=$WEATHERBIT_API_KEY
 ENV OPENWEATHER_API_KEY=$OPENWEATHER_API_KEY
 ENV ROCKET_ADDRESS=0.0.0.0
-# BlockedTODO: https://github.com/terraform-providers/terraform-provider-google/issues/5539
-# Update port and related terraform configs when the issue is resolved
-ENV ROCKET_PORT=8080
+ENV ROCKET_PORT=3000
 
 # Install environment dependencies
 RUN apt-get update && apt-get install -y ca-certificates libssl-dev

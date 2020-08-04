@@ -10,7 +10,7 @@ services:
         - WEATHERBIT_API_KEY
         - OPENWEATHER_API_KEY
     ports:
-        - 8080:8080
+        - 3000:3000
     stdin_open: true
     tty: true
     volumes:
@@ -25,7 +25,7 @@ services:
     environment:
         - UVINDEX_BACKEND_PROTOCOL=http
         - UVINDEX_BACKEND_HOST=backend
-        - UVINDEX_BACKEND_PORT=8080
+        - UVINDEX_BACKEND_PORT=3000
     stdin_open: true
     tty: true
     depends_on:

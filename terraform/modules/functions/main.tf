@@ -19,6 +19,9 @@ resource "google_cloud_run_service" "default" {
                     name = "OPENWEATHER_API_KEY"
                     value = var.openweather_api_key
                 }
+                ports {
+                    container_port = 3000
+                }
             }
         }
     }
