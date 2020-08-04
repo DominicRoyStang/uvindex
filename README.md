@@ -55,7 +55,7 @@ To run the code natively
 * If things are still not working, run `rustup update && cargo update` from services/backend and services/cli
 * set `UVINDEX_BACKEND_PROTOCOL` environment variable to `http`
 * set `UVINDEX_BACKEND_HOST` environment variable to `localhost`
-* set `UVINDEX_BACKEND_PORT` environment variable to `8080`
+* set `UVINDEX_BACKEND_PORT` environment variable to `3000`
 
 ### Run the code
 **In containers:**
