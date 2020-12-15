@@ -11,5 +11,5 @@ structopt = "0.3.21"
 prettytable-rs = "0.8.0"
 term_size = "0.3.2"
 textwrap = "0.12"
-reqwest = { version = "0.10.9", features = ["blocking", "json"] }
+reqwest = { version = "0.10.10", features = ["blocking", "json"] }
 serde = { version = "1.0.118", features = ["derive"] }
