@@ -1,5 +1,5 @@
 ### DEV BUILD STEPS ###
-FROM rust:1.45-stretch AS setup
+FROM rust:1.48-buster AS setup
 
 # Create service directory
 RUN mkdir -p /backend
@@ -8,8 +8,8 @@ WORKDIR /backend
 # Expose ports in the container
 EXPOSE 3000
 
-# BlockedTODO: https://github.com/SergioBenitez/Rocket/issues/19
-# We use nightly builds for Rocket. Switch to stable builds once this issue is resolved.
+# BlockedTODO: https://github.com/SergioBenitez/Rocket/milestone/8
+# Nightly builds are used for Rocket. Switch to stable builds once milestone 0.5.0 is released.
 RUN rustup default nightly
 
 # Source run-time environment variables
