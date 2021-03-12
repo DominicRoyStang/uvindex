@@ -1059,9 +1059,9 @@ dependencies = [
 
 [[package]]
 name = "rocket-include-static-resources"
-version = "0.9.5"
+version = "0.9.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "72b60eb734282e0a9994ec0c073b55566363290dbae167bdab520de94c024753"
+checksum = "e95131904b5c7f15b947a134162cabb05d66f12b0ef0468c72bf04821832044a"
 dependencies = [
  "crc-any",
  "mime 0.3.16",
