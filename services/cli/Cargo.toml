@@ -12,4 +12,4 @@ prettytable-rs = "0.8.0"
 term_size = "0.3.2"
 textwrap = "0.13"
 reqwest = { version = "0.11.2", features = ["blocking", "json"] }
-serde = { version = "1.0.125", features = ["derive"] }
+serde = { version = "1.0.126", features = ["derive"] }
