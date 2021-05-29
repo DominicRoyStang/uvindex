@@ -12,7 +12,7 @@ show-help:
 	@echo '  inspect-<SERVICE> | Runs bash inside the running service container.'
 
 build:
-	docker-compose --file services/docker-compose.yaml build
+	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose --file services/docker-compose.yaml build
 
 start:
 	docker-compose --file services/docker-compose.yaml up --renew-anon-volumes
