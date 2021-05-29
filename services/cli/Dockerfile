@@ -1,5 +1,5 @@
 ### DEV BUILD STEPS ###
-FROM rust:1.48-buster AS setup
+FROM rust:1.52-buster AS setup
 
 # Create service directory
 RUN mkdir -p /cli
