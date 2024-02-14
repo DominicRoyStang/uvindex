@@ -2,6 +2,8 @@
 
 > A command-line application that displays uv index information in your area.
 
+⚠ This project is no longer maintained.
+
 ![UV Index Demo](./docs/uvindex-demo.gif)
 
 # About
